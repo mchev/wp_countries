@@ -3,7 +3,7 @@ A Wordpress Plugin providing PHP arrays and HTML select list of all countries an
 
 ## Usage
 
-```
+```php
 // Important!
 global $wp_countries;
 
