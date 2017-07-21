@@ -25,7 +25,7 @@ echo $wp_countries->select_countries( array('name' => 'myname', 'id' => 'myid'),
 
 /**
  * Display a HTML select with all states of a country
- * $wp_countries->select_countries( $args = array() , $selected );
+ * $wp_countries->select_states( $args = array() , $selected, $countryCode );
  */
 echo $wp_countries->select_states( array('name' => 'myname', 'id' => 'myid'), "mySelectedOptionValue", "isoCode" );
 
