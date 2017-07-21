@@ -1,6 +1,8 @@
 # wp_countries
 A Wordpress Plugin providing PHP arrays and HTML select list of all countries and states
 
+All countries are in the list. And states are available for US, Canada, Australia, India.
+
 ## Usage
 
 ```php
