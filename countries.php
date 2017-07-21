@@ -2,7 +2,7 @@
 /*
 Plugin Name: WP Countries
 Plugin URI: https://www.martinchevignard.com
-Description: Provides countries & states list.
+Description: A Wordpress Plugin providing PHP arrays and HTML select list of all countries and states
 Author: Martin Chevignard.
 Version: 1.0
 Author URI: https://www.martinchevignard.com
