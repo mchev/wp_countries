@@ -276,24 +276,41 @@ class WP_Countries {
 	}
 
 	// Return country name by isoCode
-	public function get_name( $alpha2 ) {
+	public function get_name( $country_code ) {
 		
 		foreach ( $this->countries as $country ) {
 			
-			return ( $country['alpha2'] == $alpha2 ) ? $country['name'] : false;
+			if ( $country['alpha2'] == $country_code )
+				
+				return $country['name'];
+			
+		}
+		
+	}
+	
+	// Return state name by isoCode
+	public function get_state_name( $country_code, $state_code ) {
+		
+		$states = $this->get_states( $country_code );
+		
+		foreach ( $states as $key => $state ) {
+			
+			if ( $key == $state_code )
+				
+				return $state;
 			
 		}
 		
 	}
 
 	// Return states array by country isoCode
-	public function get_states( $alpha2 ) {
+	public function get_states( $country_code ) {
 			
 		foreach ( $this->countries as $country ) {
 			
-			if ( $country['alpha2'] == $alpha2 && !empty($country['states']) ) {
+			if ( $country['alpha2'] == $country_code && !empty($country['states']) )
+				
 				return $country['states'];
-			}
 			
 		}
 		
@@ -326,24 +343,32 @@ class WP_Countries {
 	// Return an HTML select list of states by country code
 	public function select_states( $args = array(), $selected, $alpha2 ) {
 		
-		$select_args = '';
+		if ( $this->get_states($alpha2) ) {
 		
-		foreach ($args as $key => $value) {
-			$select_args .= $key . '="' . $value . '" ';
-		}
-		
-		$return = '<select ' . $select_args . '>';
-	
-		foreach ( $this->get_states($alpha2) as $iso => $state ) {
+			$select_args = '';
 			
-			if ( $selected == $iso ) $active = ' selected="selected"'; else $active = '';
-			$return .= '<option value="' . $iso . '"' . $active . '>' . $state . '</option>';
+			foreach ($args as $key => $value) {
+				$select_args .= $key . '="' . $value . '" ';
+			}
+			
+			$return = '<select ' . $select_args . '>';
+		
+			foreach ( $this->get_states($alpha2) as $iso => $state ) {
+				
+				if ( $selected == $iso ) $active = ' selected="selected"'; else $active = '';
+				$return .= '<option value="' . $iso . '"' . $active . '>' . $state . '</option>';
+				
+			}
+			
+			$return .= '</select>';
+			
+			return $return;
+		
+		} else {
+			
+			return false;
 			
 		}
-		
-		$return .= '</select>';
-		
-		return $return;
 
 	}
 	
